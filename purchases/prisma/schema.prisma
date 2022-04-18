@@ -12,6 +12,7 @@ datasource db {
 
 model Customer {
   id         String     @id @default(uuid())
+  authUserId String?    @unique
   purchases  Purchase[]
   created_at DateTime   @default(now())
   updated_at DateTime   @default(now()) @updatedAt
