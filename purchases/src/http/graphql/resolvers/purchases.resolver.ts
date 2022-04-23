@@ -7,11 +7,11 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { AuthorizationGuard } from 'src/http/auth/authorization.guard';
-import { AuthUser, CurrentUser } from 'src/http/auth/currentUser';
-import { CustomersService } from 'src/services/customers.service';
-import { ProductsService } from 'src/services/products.service';
-import { PurchasesService } from 'src/services/purchases.service';
+import { AuthorizationGuard } from '../../../http/auth/authorization.guard';
+import { AuthUser, CurrentUser } from '../../../http/auth/currentUser';
+import { CustomersService } from '../../../services/customers.service';
+import { ProductsService } from '../../../services/products.service';
+import { PurchasesService } from '../../../services/purchases.service';
 import { CreatePurchaseInput } from '../inputs/create-purchase-input';
 import { Product } from '../models/product';
 import { Purchase } from '../models/purchase';
