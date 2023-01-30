@@ -23,7 +23,37 @@ Ocorreu do dia 04 ao dia 11 de Abril de 2022 e teve como intuito mostrar na prá
 
 ## Ignite Lab I
 
-🚧 **_Em construção_** 🚧
+Projeto desenvolvido durante a primeira edição do Ignite Lab cujo objetivo foi entender na pratica como criar aplicações escaláveis utilizando microsserviços e como conectá-los com frontends.
+
+A aplicação desenvolvida é uma página de cursos aonde os usuários realizam login através de e-mail e senha ou com autenticação social utilizando conta Google, como podemos ver na tela de login abaixo utilizando Auth0:
+
+![Tela de login](.github/login-screen.png)
+
+A landing page é bem simples pois o foco do evento foi lidar com os microsserviços, no caso foram construídos:
+
+- [x] Microsserviço Purchases: Responsável por lidar com os eventos de compra.
+  - No caso dessa aplicação, é ele quem cria as mensagens de novas compras de cursos no tópico `purchases.new-purchase`.
+- [x] Microsserviço Classroom: Responsável por lidar com as turmas dentro da aplicação.
+  - Consome as mensagens do tópico de purchases para, com base nelas, criar novos alunos e vincula-los aos cursos comprados.
+- [x] Microsserviço Gateway: API gateway da aplicação.
+
+Com o usuário não autenticado a visualização da página inicial fica dessa maneira:
+
+![Landing Page](.github/landing-page.png)
+
+Após realizar o login e clicar no link `Faça sua matricula` localizado no header, o usuário verá todos os cursos e poderá clicar no botão `Realizar inscrição` para fazer parte da turma do curso em questão, conforme ilustrado a seguir:
+
+![Cursos disponíveis](.github/enroll-courses.png)
+
+Ao acessar a aba `Meus cursos`, o usuário terá acesso a todos os cursos aos quais ele se matriculou, podendo ver também o avatar de alunos da mesma turma e a data de ingresso, como podemos ver a seguir:
+
+![Meus cursos](.github/my-courses.png)
+
+Basicamente são essas as etapas do projeto. Deixarei a seguir uma evidência das mensagens criadas e logo após um GIF de demonstração da aplicação sendo utilizada, passarei por todos os caminhos possíveis para exemplificar o fluxo como um todo:
+
+![Kafka UI](.github/kafka-ui.png)
+
+![Demonstração da aplicação](.github/demo.gif)
 
 ## Instalação
 
