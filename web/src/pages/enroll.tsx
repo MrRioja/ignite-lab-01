@@ -11,12 +11,15 @@ import {
   GetProductsQuery,
   useCreatePurchaseMutation,
 } from "../graphql/generated/graphql";
+import { useUser } from "@auth0/nextjs-auth0";
+import Link from "next/link";
 
 interface EnrollProps {
   data: GetProductsQuery;
 }
 
 function Enroll({ data }: EnrollProps) {
+  const { user } = useUser();
   const [createPurchase] = useCreatePurchaseMutation();
 
   async function handlePurchaseProduct(productId: string) {
@@ -66,14 +69,24 @@ function Enroll({ data }: EnrollProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="ml-5 flex-shrink-0">
-                        <button
-                          onClick={() => handlePurchaseProduct(product.id)}
-                          className="px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700"
-                        >
-                          Realizar inscrição
-                        </button>
-                      </div>
+                      {user ? (
+                        <div className="ml-5 flex-shrink-0">
+                          <button
+                            onClick={() => handlePurchaseProduct(product.id)}
+                            className="px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700"
+                          >
+                            Realizar inscrição
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="md:flex md:items-center md:space-x-6">
+                          <Link href="/api/auth/login">
+                            <a className="text-base font-medium font-medium text-indigo-600 hover:text-indigo-900">
+                              Acesse sua conta
+                            </a>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </li>
                 ))}
